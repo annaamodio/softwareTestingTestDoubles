@@ -19,6 +19,8 @@ import org.junit.jupiter.params.provider.CsvSource;
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
 
+//MODIFICA
+
 class TestClass {
 	
 	
