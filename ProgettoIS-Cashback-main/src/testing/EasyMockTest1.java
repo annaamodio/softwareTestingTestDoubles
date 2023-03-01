@@ -23,7 +23,7 @@ import entity.ProgrammaCashback;
 class EasyMockTest1 {
 	
 	
-	
+	//commit di prova
 	
 	private static ApplicazioneCashback applCash;
 	private static ProgrammaCashback progrCash;
