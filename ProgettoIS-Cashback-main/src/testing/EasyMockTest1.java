@@ -19,19 +19,15 @@ import org.junit.jupiter.params.provider.CsvSource;
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
 
-//MODIFICA
 
 class EasyMockTest1 {
 	
 	
-	/*@Rule
-	public EasyMockRule mocks = new EasyMockRule(this);
-	*/
-	//@TestSubject
-	private static ApplicazioneCashback applCash;
 	
-	//@Mock
+	
+	private static ApplicazioneCashback applCash;
 	private static ProgrammaCashback progrCash;
+	
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
