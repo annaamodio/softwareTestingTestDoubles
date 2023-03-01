@@ -21,7 +21,7 @@ import entity.ProgrammaCashback;
 
 //MODIFICA
 
-class TestClass {
+class EasyMockTest1 {
 	
 	
 	/*@Rule
