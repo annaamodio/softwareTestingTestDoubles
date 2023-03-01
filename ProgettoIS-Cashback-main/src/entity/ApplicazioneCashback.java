@@ -44,6 +44,7 @@ public class ApplicazioneCashback {
 		}
 	}*/
 	
+	
 	//STUB per il metodo ricercaProgramma
 	private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
