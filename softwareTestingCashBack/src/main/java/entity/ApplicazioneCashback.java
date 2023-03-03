@@ -14,7 +14,7 @@ public class ApplicazioneCashback {
 	private ArrayList<Iscrizione> iscrizioni;
 	private ArrayList<Cittadino> cittadini;
 	
-	protected ApplicazioneCashback() {
+	public ApplicazioneCashback() {
 		//costruttore
 		iscrizioni = new ArrayList<Iscrizione>();
 		cittadini = new ArrayList<Cittadino>();
@@ -45,8 +45,8 @@ public class ApplicazioneCashback {
 	}
 	
 	
-	/*//STUB per il metodo ricercaProgramma
-	private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
+	//STUB per il metodo ricercaProgramma
+	/*private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
 		if(programma != 162022) {
 			throw new IllegalArgumentException("Un programma deve essere un intero positivo su 6 cifre");	
