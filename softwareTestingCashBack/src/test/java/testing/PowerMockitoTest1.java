@@ -1,31 +1,63 @@
 package testing;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static org.mockito.AdditionalMatchers.not;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
+import entity.ApplicazioneCashback;
+import entity.ProgrammaCashback;
+import junitparams.JUnitParamsRunner;
+//import junitparams.Parameters;
+import org.junit.runners.Parameterized.Parameters;
+import junitparams.*;
+import junitparams.converters.Param;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
+import org.junit.runners.Parameterized;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import entity.ApplicazioneCashback;
-import entity.ProgrammaCashback;
+import org.powermock.modules.junit4.PowerMockRunnerDelegate;
+import java.util.Arrays;
+import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.AdditionalMatchers.not;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
 
 @RunWith(PowerMockRunner.class)
+@PowerMockRunnerDelegate(Parameterized.class)
 @PrepareForTest(ApplicazioneCashback.class)
 public class PowerMockitoTest1 {
 
+	@Parameters
+	public static Collection<Object[]> data() {
+		return Arrays.asList(new Object[][] {
+				{"ABCDEFGHI123456","qwerty7890",162022,true},
+				{"ABCDEFGHI123456","qwerty7890",150,false},
+				{"ABCDEFGHI123456","101112",11001122,false}
+		});
+	}
+
+	private String idCittadino;
+	private String password;
+	private int programma;
+	private boolean esito;
+	public PowerMockitoTest1(String idCittadino, String password, int programma, boolean esito){
+		this.idCittadino = idCittadino;
+		this.password = password;
+		this.programma = programma;
+		this.esito = esito;
+	}
 	private static ProgrammaCashback progrCash;
 	private static ApplicazioneCashback applCash;
+
+
+
+
+
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -44,7 +76,7 @@ public class PowerMockitoTest1 {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	@Test
+	/*@Test
 	public void test1() throws Exception {
 		//verifica che funzioni correttamente
 		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.00, 0.1);
@@ -67,4 +99,18 @@ public class PowerMockitoTest1 {
 		//eccezione per programma
 		assertThrows(IllegalArgumentException.class, ()->applCash.richiediRimborso("ABCDEFGHI123456", "qwer!y7890", 150, progrCash));
 	}
+*/
+
+	@Test
+	public void test5() throws Exception{
+
+		if(esito) {
+			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);
+			Assertions.assertEquals(result, 2.0);
+			verify(progrCash).creaRimborso("ABCDEFGHI123456", "qwerty7890");
+		}else {
+			assertThrows(IllegalArgumentException.class, () -> applCash.richiediRimborso(idCittadino, password, programma, progrCash));
+		}
+	}
+
 }
