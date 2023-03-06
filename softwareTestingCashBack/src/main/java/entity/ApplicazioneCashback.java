@@ -33,7 +33,7 @@ public class ApplicazioneCashback {
 
 	public void registraAcquisti() {}
 
-	private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
+	/*private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
 		if( !(String.valueOf(programma).matches("[0-9]{6}$")) || programma<0){ 
 			throw new IllegalArgumentException("Un programma deve essere un intero positivo su 6 cifre");	
@@ -42,17 +42,17 @@ public class ApplicazioneCashback {
 		if(progCashback == null) {
 			progCashback = new ProgrammaCashback(programma);
 		}
-	}
+	}*/
 	
 	
 	//STUB per il metodo ricercaProgramma
-	/*private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
+	private void ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
 		if(programma != 162022) {
 			throw new IllegalArgumentException("Un programma deve essere un intero positivo su 6 cifre");	
 		}	
 		
-	}*/
+	}
 	
 	public float richiediRimborso(String idCittadino, String password, int programma, ProgrammaCashback progCashback)
 	throws ProgrammaNonTrovato, IscrizioneNonTrovata,PasswordErrata,ProgrammaNonTerminato,MinAcquistiNonRaggiunto, IllegalArgumentException {
