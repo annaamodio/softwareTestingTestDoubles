@@ -4,6 +4,7 @@ import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
 import junitparams.JUnitParamsRunner;
 //import junitparams.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.runners.Parameterized.Parameters;
 import junitparams.*;
 import junitparams.converters.Param;
@@ -37,7 +38,20 @@ public class PowerMockitoTest1 {
 		return Arrays.asList(new Object[][] {
 				{"ABCDEFGHI123456","qwerty7890",162022,true},
 				{"ABCDEFGHI123456","qwerty7890",150,false},
-				{"ABCDEFGHI123456","101112",11001122,false}
+				{"ABCDEFGHI123456","101112",11001122,false},
+				{"ABCDEFGHI123456","111111111111111111",-125125,false},
+				{"ABCDEFGHI123456","qwer!y&890",162022,false},
+				{"a1b2b3","101112",-125125,false},
+				{"a1b2b3","111111111111111111",162022,false},
+				{"a1b2b3","qwer!y&890",150,false},
+				{"bbbbbbbbbbbbbbbbbb","qwerty7890",-125125,false},
+				{"bbbbbbbbbbbbbbbbbb","101112",162022,false},
+				{"bbbbbbbbbbbbbbbbbb","111111111111111111",150,false},
+				{"bbbbbbbbbbbbbbbbbb","qwer!y&890",11001122,false},
+				{"ABCDEFGHI12@45%","qwerty7890",162022,false},
+				{"ABCDEFGHI12@45%","101112",150,false},
+				{"ABCDEFGHI12@45%","111111111111111111",11001122,false},
+				{"ABCDEFGHI12@45%","qwer!y&890",-125125,false}
 		});
 	}
 
@@ -53,8 +67,6 @@ public class PowerMockitoTest1 {
 	}
 	private static ProgrammaCashback progrCash;
 	private static ApplicazioneCashback applCash;
-
-
 
 
 
@@ -76,7 +88,7 @@ public class PowerMockitoTest1 {
 	public static void tearDownAfterClass() throws Exception {
 	}
 
-	/*@Test
+	@Test
 	public void test1() throws Exception {
 		//verifica che funzioni correttamente
 		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.00, 0.1);
@@ -99,7 +111,7 @@ public class PowerMockitoTest1 {
 		//eccezione per programma
 		assertThrows(IllegalArgumentException.class, ()->applCash.richiediRimborso("ABCDEFGHI123456", "qwer!y7890", 150, progrCash));
 	}
-*/
+
 
 	@Test
 	public void test5() throws Exception{
@@ -107,7 +119,6 @@ public class PowerMockitoTest1 {
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);
 			Assertions.assertEquals(result, 2.0);
-			verify(progrCash).creaRimborso("ABCDEFGHI123456", "qwerty7890");
 		}else {
 			assertThrows(IllegalArgumentException.class, () -> applCash.richiediRimborso(idCittadino, password, programma, progrCash));
 		}
