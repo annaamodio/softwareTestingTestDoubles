@@ -1,4 +1,4 @@
-package testing;
+package testing.test1;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
@@ -37,7 +37,6 @@ public class JMockitTest1 {
         }};
 
         assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.0);
-
     }
 
     @Test

@@ -1,4 +1,4 @@
-package testing;
+package testing.test1;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
@@ -78,7 +78,7 @@ public class PowerMockitoTest1 {
 		when(progrCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
 		when(progrCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
 		
-		applCash = PowerMockito.spy(new ApplicazioneCashback());
+		applCash = PowerMockito.spy(ApplicazioneCashback.getInstance());
 		//PowerMockito.doNothing().when(applCash, "ricercaProgramma",162022, progrCash); --in mockito inutile
 		PowerMockito.doThrow(new IllegalArgumentException()).when(applCash, "ricercaProgramma", not(eq(162022)) , any());
 		
@@ -123,5 +123,4 @@ public class PowerMockitoTest1 {
 			assertThrows(IllegalArgumentException.class, () -> applCash.richiediRimborso(idCittadino, password, programma, progrCash));
 		}
 	}
-
 }

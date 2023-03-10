@@ -79,7 +79,15 @@
 			  <version>1.49</version>
 			  <scope>test</scope>
 		  </dependency>
-	</dependencies>
+
+		  <!-- https://mvnrepository.com/artifact/emma/maven-emma-plugin -->
+		  <dependency>
+			  <groupId>emma</groupId>
+			  <artifactId>maven-emma-plugin</artifactId>
+			  <version>0.5</version>
+		  </dependency>
+
+	  </dependencies>
 
 	<build>
 		<plugins>

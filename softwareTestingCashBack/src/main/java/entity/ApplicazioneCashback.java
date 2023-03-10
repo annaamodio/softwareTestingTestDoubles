@@ -14,7 +14,7 @@ public class ApplicazioneCashback {
 	private ArrayList<Iscrizione> iscrizioni;
 	private ArrayList<Cittadino> cittadini;
 	
-	public ApplicazioneCashback() {
+	protected ApplicazioneCashback() {
 		//costruttore
 		iscrizioni = new ArrayList<Iscrizione>();
 		cittadini = new ArrayList<Cittadino>();

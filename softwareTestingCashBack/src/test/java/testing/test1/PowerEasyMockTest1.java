@@ -1,4 +1,4 @@
-package testing;
+package testing.test1;
 
 import static org.easymock.EasyMock.anyString;
 import static org.easymock.EasyMock.eq;
