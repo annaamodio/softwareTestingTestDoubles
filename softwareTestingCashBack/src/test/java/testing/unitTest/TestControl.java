@@ -26,6 +26,7 @@ public class TestControl {
             ApplicazioneCashback.getInstance(); times = 2;
             appCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, null);
             times = 1;
+            appCash.richiediRimborso(withNotEqual("ABCDEFGHI123456"), anyString, anyInt, withNull());
         }};
     }
 }
