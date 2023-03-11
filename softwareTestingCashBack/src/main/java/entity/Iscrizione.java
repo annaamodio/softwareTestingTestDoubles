@@ -15,6 +15,7 @@ public class Iscrizione {
 	private ArrayList<CartaDiCredito> carteRegistrate;
 	private Cittadino cittadino;
 	private ProgrammaCashback programma;
+	private DBIscrizione iscrizione;
 	
 	public Iscrizione() {
 		acquistiRegistrati = new ArrayList<Acquisto>();
@@ -39,7 +40,7 @@ public class Iscrizione {
 		acquistiRegistrati = new ArrayList<Acquisto>();
 		carteRegistrate=new ArrayList<CartaDiCredito>();
 		
-		DBIscrizione iscrizione=new DBIscrizione(idCittadino);
+		iscrizione=new DBIscrizione(idCittadino);
 	
 		this.iban=iscrizione.getIban();
 		this.password=iscrizione.getPassword();

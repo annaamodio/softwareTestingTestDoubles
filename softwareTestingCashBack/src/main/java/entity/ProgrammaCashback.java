@@ -12,9 +12,10 @@ public class ProgrammaCashback {
 	private Date dataInizio;
 	private Date dataFine;
 	private int minAcquisti;
-	private float maxTetto; //se è un float, modificarlo nel CD
+	private float maxTetto;
 	private float percRimborso;
 	private ArrayList<Iscrizione> iscrizioni;
+	private DBProgrammaCashback programma;
 
 	public ProgrammaCashback() {
 		iscrizioni = new ArrayList<Iscrizione>();
@@ -38,8 +39,8 @@ public class ProgrammaCashback {
 		iscrizioni = new ArrayList<Iscrizione>();
 
 		this.idProgramma=idProgramma;
-		
-			DBProgrammaCashback programma = new DBProgrammaCashback(idProgramma);
+
+		programma = new DBProgrammaCashback(idProgramma);
 		this.dataInizio=programma.getDataInizio();
 		this.dataFine=programma.getDataFine();
 		this.minAcquisti=programma.getMinAcquisti();
@@ -104,6 +105,8 @@ public class ProgrammaCashback {
 		}
 		Date currentDate = new Date(System.currentTimeMillis());
 		if(dataFine.after(currentDate)){
+			System.out.println("data oggi" + currentDate.toString());
+			System.out.println("data fine" + dataFine.toString());
 			throw new ProgrammaNonTerminato("il programma non è ancora terminato.");
 		}
 		if(daVerificare.getAcquistiRegistrati().size()<minAcquisti) {
