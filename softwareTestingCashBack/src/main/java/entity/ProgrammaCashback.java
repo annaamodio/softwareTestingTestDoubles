@@ -105,8 +105,6 @@ public class ProgrammaCashback {
 		}
 		Date currentDate = new Date(System.currentTimeMillis());
 		if(dataFine.after(currentDate)){
-			System.out.println("data oggi" + currentDate.toString());
-			System.out.println("data fine" + dataFine.toString());
 			throw new ProgrammaNonTerminato("il programma non è ancora terminato.");
 		}
 		if(daVerificare.getAcquistiRegistrati().size()<minAcquisti) {
