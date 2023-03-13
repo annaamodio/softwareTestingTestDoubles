@@ -1,6 +1,9 @@
 package testing.unitTest;
 
 import boundary.MainFrame;
+import control.CGestioneCashback;
+import mockit.Expectations;
+import mockit.Mocked;
 import org.junit.Test;
 
 import java.awt.*;
@@ -12,8 +15,17 @@ public class TestBoundary {
 
     private static MainFrame mainFrame;
 
-    public static void main(String args[]) throws IOException,
-            AWTException, InterruptedException{
+    @Mocked
+    private CGestioneCashback cGestione;
+
+    @Test
+    public void test() throws Exception{
+
+                new Expectations(){{
+                    //cGestione.gestisciRichiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022);
+                    cGestione.gestisciRichiediRimborso(anyString, anyString, anyInt);
+                    result = 10;
+                }};
 
                 mainFrame.main(null);
                 try {
@@ -29,11 +41,11 @@ public class TestBoundary {
 
                 //open MainFrame
                 robot.mouseMove(500,350);
-                Thread.sleep(5000);
+                Thread.sleep(2000);
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
 
-                Thread.sleep(2000);
+                Thread.sleep(1000);
 
                 //inserisci programma
                 robot.keyPress(KeyEvent.VK_1);
@@ -53,7 +65,7 @@ public class TestBoundary {
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_SHIFT);
                 //inserisci idCittadino
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 robot.keyPress(KeyEvent.VK_A);
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_B);
@@ -88,9 +100,8 @@ public class TestBoundary {
 
                 robot.keyPress(KeyEvent.VK_TAB);
                 Thread.sleep(500);
-                robot.keyPress(KeyEvent.VK_SHIFT);
                 //inserisci password
-                Thread.sleep(2000);
+                Thread.sleep(1000);
                 robot.keyPress(KeyEvent.VK_Q);
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_W);
@@ -103,8 +114,6 @@ public class TestBoundary {
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_Y);
                 Thread.sleep(500);
-                robot.keyRelease(KeyEvent.VK_SHIFT);
-                Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_7);
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_8);
@@ -112,11 +121,10 @@ public class TestBoundary {
                 robot.keyPress(KeyEvent.VK_9);
                 Thread.sleep(500);
                 robot.keyPress(KeyEvent.VK_0);
-                Thread.sleep(2000);
+                Thread.sleep(1000);
 
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-
 
     }
 }

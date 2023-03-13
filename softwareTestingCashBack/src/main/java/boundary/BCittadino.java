@@ -4,7 +4,7 @@ import control.*;
 
 public class BCittadino {
 
-	
+
 	public BCittadino() {
 		super();
 	}
@@ -15,7 +15,9 @@ public class BCittadino {
 	
 	public float richiediRimborso(int idProgramma, String idCittadino, String password) 
 	throws ProgrammaNonTrovato, IscrizioneNonTrovata, PasswordErrata, ProgrammaNonTerminato, MinAcquistiNonRaggiunto, IllegalArgumentException {
-		
+
+		System.out.println("ciaooooo");
+
 		return CGestioneCashback.gestisciRichiediRimborso(idCittadino, password, idProgramma);
 	}
 }
