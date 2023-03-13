@@ -22,9 +22,7 @@ public class TestBoundary {
     public void test() throws Exception{
 
                 new Expectations(){{
-                    //cGestione.gestisciRichiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022);
-                    cGestione.gestisciRichiediRimborso(anyString, anyString, anyInt);
-                    result = 10;
+                    cGestione.gestisciRichiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022); result = 10;
                 }};
 
                 mainFrame.main(null);
@@ -125,6 +123,8 @@ public class TestBoundary {
 
                 robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
                 robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
+
+                Thread.sleep(5000);
 
     }
 }
