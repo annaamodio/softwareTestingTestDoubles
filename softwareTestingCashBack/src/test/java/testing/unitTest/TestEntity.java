@@ -2,15 +2,11 @@ package testing.unitTest;
 
 import database.*;
 import entity.ApplicazioneCashback;
-import entity.Iscrizione;
-import entity.ProgrammaCashback;
 import mockit.Expectations;
 import mockit.Injectable;
 import mockit.Mocked;
-import mockit.Tested;
 import org.junit.jupiter.api.Test;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.sql.Date;
@@ -71,8 +67,7 @@ public class TestEntity {
             dbIscrizione.getCittadino(); result = dbCittadino;
             dbIscrizione.getProgramma(); result = dbProgCash;
 
-            ArrayList<DBAcquisto> acqList= new ArrayList<DBAcquisto>(Arrays.asList(acq1,acq2));
-            dbIscrizione.getAcquistiRegistrati(); result = acqList;
+            dbIscrizione.getAcquistiRegistrati(); result = new ArrayList<DBAcquisto>(Arrays.asList(acq1,acq2));
 
             //DEFINIZIONE DEL COMPORTAMENTO DI DBAcquisto
 
