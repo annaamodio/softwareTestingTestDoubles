@@ -34,7 +34,7 @@ public class ApplicazioneCashback {
 
 	public void registraAcquisti() {}
 
-	private ProgrammaCashback ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
+	/*private ProgrammaCashback ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
 		if( !(String.valueOf(programma).matches("[0-9]{6}$")) || programma<0){ 
 			throw new IllegalArgumentException("Un programma deve essere un intero positivo su 6 cifre");	
@@ -44,11 +44,11 @@ public class ApplicazioneCashback {
 			progCashback = new ProgrammaCashback(programma);
 
 		return progCashback;
-	}
+	}*/
 	
 	
 	//STUB per il metodo ricercaProgramma
-	/*private ProgrammaCashback ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
+	private ProgrammaCashback ricercaProgramma(int programma, ProgrammaCashback progCashback) throws ProgrammaNonTrovato, IllegalArgumentException{
 		
 		if(programma != 162022) {
 			throw new IllegalArgumentException("Un programma deve essere un intero positivo su 6 cifre");	
@@ -56,10 +56,11 @@ public class ApplicazioneCashback {
 
 		return progCashback;
 		
-	}*/
+	}
 	
 	public float richiediRimborso(String idCittadino, String password, int programma, ProgrammaCashback progCashback)
-	throws ProgrammaNonTrovato, IscrizioneNonTrovata,PasswordErrata,ProgrammaNonTerminato,MinAcquistiNonRaggiunto, IllegalArgumentException {
+	throws ProgrammaNonTrovato, IscrizioneNonTrovata,PasswordErrata,
+			ProgrammaNonTerminato,MinAcquistiNonRaggiunto, IllegalArgumentException {
 		ProgrammaCashback programmaCashback = progCashback;
 		programmaCashback = ricercaProgramma(programma, programmaCashback);
 

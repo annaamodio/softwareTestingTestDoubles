@@ -37,7 +37,7 @@ class MockitoTest1 {
 	}
 
 	@ParameterizedTest
-	@CsvFileSource(resources ="/pwc.csv")
+	@CsvFileSource(resources ="/pwc.csv", numLinesToSkip = 1)
 	void test1(String idCittadino, String password, int programma, boolean esito) throws Exception  {
 
 		//test parametrizzato: realizza la copertura pair-wise

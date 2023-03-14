@@ -59,7 +59,7 @@ class EasyMockTest1 {
 	}
 	
 	@ParameterizedTest
-	@CsvFileSource(resources = "/pwc.csv")
+	@CsvFileSource(resources = "/pwc.csv", numLinesToSkip = 1)
 	void test3(String idCittadino, String password, int programma,Boolean esito) throws Exception{
 
 		//test parametrizzato: realizza la copertura pair-wise

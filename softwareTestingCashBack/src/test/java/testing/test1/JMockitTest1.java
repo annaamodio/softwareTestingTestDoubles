@@ -49,7 +49,7 @@ public class JMockitTest1 {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/pwc.csv")
+    @CsvFileSource(resources = "/pwc.csv", numLinesToSkip = 1)
     void test(String idCittadino, String password, int programma,Boolean esito) throws Exception{
 
         //test parametrizzato con JUnit 4: realizza la copertura pair-wise
