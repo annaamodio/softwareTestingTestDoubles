@@ -26,14 +26,12 @@ public class JMockitTest1 {
         assumeTrue(applCash!=null);
     }
 
-
     @Test
     public void test1() throws Exception{
 
+        //risultato corretto
         new Expectations(){{
             progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890"); result=2.0;
-
-
         }};
 
         assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.0);
@@ -41,6 +39,8 @@ public class JMockitTest1 {
 
     @Test
     public void test2() throws Exception{
+
+        //eccezione
         new Expectations(){{
             progrCash.creaRimborso(anyString, anyString); result = new IllegalArgumentException();
         }};
@@ -51,6 +51,10 @@ public class JMockitTest1 {
     @ParameterizedTest
     @CsvFileSource(resources = "/pwc.csv")
     void test(String idCittadino, String password, int programma,Boolean esito) throws Exception{
+
+        //test parametrizzato con JUnit 4: realizza la copertura pair-wise
+        //il campo 'esito' è stato inserito per poter svolgere un test assertion-based
+
         new Expectations(){{
             progrCash.creaRimborso(anyString, anyString); result = new Delegate(){
                 float delegate(String idCittadino, String password){
@@ -62,6 +66,7 @@ public class JMockitTest1 {
                 }
             };
             minTimes=0;
+
         }};
 
         if(esito) {

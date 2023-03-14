@@ -32,6 +32,7 @@ import java.util.Collection;
 @PowerMockRunnerDelegate(Parameterized.class)
 @PrepareForTest(ApplicazioneCashback.class)
 public class PowerEasyMockTest1 {
+
 	@Parameterized.Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
@@ -69,13 +70,15 @@ public class PowerEasyMockTest1 {
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+
+		//oggetto mock
 		progrCash = mock(ProgrammaCashback.class);
 		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 2.0);
 		expect(progrCash.creaRimborso(not(eq("ABCDEFGHI123456")), anyString())).andStubThrow(new IllegalArgumentException());
 		expect(progrCash.creaRimborso(anyString(), not(eq("qwerty7890")))).andStubThrow(new IllegalArgumentException());
 		PowerMock.replay(progrCash);
-		
+
+		//mock parziale per realizzare lo stub del metodo privato
 		applCash = PowerMock.createPartialMock(ApplicazioneCashback.class, "ricercaProgramma");
 		PowerMock.expectPrivate(applCash, "ricercaProgramma", 162022, progrCash).asStub();
 		PowerMock.expectPrivate(applCash, "ricercaProgramma", not(eq(162022)), eq(progrCash)).andStubThrow(new IllegalArgumentException());
@@ -113,6 +116,9 @@ public class PowerEasyMockTest1 {
 	}
 	@Test
 	public void test5() throws Exception{
+
+		//test parametrizzato con JUnit 4: realizza la copertura pair-wise
+		//il campo 'esito' è stato inserito per poter svolgere un test assertion-based
 
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);

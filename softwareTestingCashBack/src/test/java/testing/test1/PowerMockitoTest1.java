@@ -73,20 +73,18 @@ public class PowerMockitoTest1 {
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
-		
+
+		//oggetto mock
 		progrCash = mock(ProgrammaCashback.class);
 		when(progrCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
 		when(progrCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
-		
+
+		//mock parziale per realizzare lo stub del metodo privato
 		applCash = PowerMockito.spy(ApplicazioneCashback.getInstance());
-		//PowerMockito.doNothing().when(applCash, "ricercaProgramma",162022, progrCash); --in mockito inutile
 		PowerMockito.doThrow(new IllegalArgumentException()).when(applCash, "ricercaProgramma", not(eq(162022)) , any());
-		
+		//il comportamento per l'input corretto è quello di default: ritorna null
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Test
 	public void test1() throws Exception {
@@ -115,6 +113,9 @@ public class PowerMockitoTest1 {
 
 	@Test
 	public void test5() throws Exception{
+
+		//test parametrizzato con JUnit 4: realizza la copertura pair-wise
+		//il campo 'esito' è stato inserito per poter svolgere un test assertion-based
 
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);

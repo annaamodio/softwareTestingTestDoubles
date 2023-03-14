@@ -1,11 +1,7 @@
 package testing.test1;
 
-
 import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.*;
-
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
@@ -22,13 +18,16 @@ class MockitoTest1 {
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
+		//otteniamo un'istanza di ApplicazioneCashback
 		appCash = ApplicazioneCashback.getInstance();		
 		assertNotNull(appCash);
-		
-		progCash = mock(ProgrammaCashback.class);
 
+		//creazione del mock
+		progCash = mock(ProgrammaCashback.class);
+		//definizione del comportamento
 		when(progCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
 		when(progCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
+		//la seconda definizione prevale sulla prima
 	}
 
 	@AfterAll
@@ -37,14 +36,13 @@ class MockitoTest1 {
 		assertNull(appCash);
 	}
 
-	@BeforeEach
-	void setUp() throws Exception {
-	}
-	
 	@ParameterizedTest
 	@CsvFileSource(resources ="/pwc.csv")
 	void test1(String idCittadino, String password, int programma, boolean esito) throws Exception  {
-			
+
+		//test parametrizzato: realizza la copertura pair-wise
+		//il campo 'esito' è stato inserito per poter svolgere un test assertion-based
+
 		if(esito) {
 			float result = appCash.richiediRimborso(idCittadino, password, programma, progCash);
 			assertEquals(result, 2.0);	
@@ -53,13 +51,5 @@ class MockitoTest1 {
 			assertThrows(IllegalArgumentException.class, () -> appCash.richiediRimborso(idCittadino, password, programma, progCash));
 		}
 	}
-	
-	
-
-	@AfterEach
-	void tearDown() throws Exception {
-	}
-
-
 
 }
