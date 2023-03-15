@@ -12,7 +12,7 @@ public class DBConnectionManager {
 	public static String dbName = "CASHBACK";
 	public static String driver = "com.mysql.cj.jdbc.Driver";
 	public static String userName = "root"; 
-	public static String password = "teamrosso";
+	public static String password = "password";
 	
 	
 	public static Connection getConnection() throws ClassNotFoundException, SQLException {
