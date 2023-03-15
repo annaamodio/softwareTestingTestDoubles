@@ -1,41 +1,41 @@
-package testing.test1;
+package test1;
 
-import static org.easymock.EasyMock.anyString;
-import static org.easymock.EasyMock.eq;
-import static org.easymock.EasyMock.expect;
-import static org.easymock.EasyMock.mock;
-import static org.easymock.EasyMock.not;
-import static org.junit.Assert.*;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
+import entity.ApplicazioneCashback;
+import entity.ProgrammaCashback;
+import junitparams.JUnitParamsRunner;
+//import junitparams.Parameters;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.runners.Parameterized.Parameters;
+import junitparams.*;
+import junitparams.converters.Param;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.powermock.api.easymock.PowerMock;
+import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.easymock.EasyMock.*;
-
-import entity.ApplicazioneCashback;
-import entity.ProgrammaCashback;
 import org.powermock.modules.junit4.PowerMockRunnerDelegate;
-
 import java.util.Arrays;
 import java.util.Collection;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.AdditionalMatchers.not;
+import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.Mockito.*;
+
 
 @RunWith(PowerMockRunner.class)
 @PowerMockRunnerDelegate(Parameterized.class)
 @PrepareForTest(ApplicazioneCashback.class)
-public class PowerEasyMockTest1 {
+public class PowerMockitoTest1 {
 
 	//JUnit 4 non supporta @CsvSource per i test parametrizzati
 	//L'alternativa sarebbe utilizzare JUnitParams, ma non funziona insieme al runner di PowerMock
-	@Parameterized.Parameters
+	@Parameters
 	public static Collection<Object[]> data() {
 		return Arrays.asList(new Object[][] {
 				{"ABCDEFGHI123456","qwerty7890",162022,true},
@@ -97,42 +97,37 @@ public class PowerEasyMockTest1 {
 				{"bbbbbbbbbbbbbbbbbb","qwerty7890",0,false}
 		});
 	}
+
 	private String idCittadino;
 	private String password;
 	private int programma;
 	private boolean esito;
-	public PowerEasyMockTest1(String idCittadino, String password, int programma, boolean esito){
+	public PowerMockitoTest1(String idCittadino, String password, int programma, boolean esito){
 		this.idCittadino = idCittadino;
 		this.password = password;
 		this.programma = programma;
 		this.esito = esito;
 	}
-
 	private static ProgrammaCashback progrCash;
 	private static ApplicazioneCashback applCash;
-	
+
+
+
+
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 
 		//oggetto mock
 		progrCash = mock(ProgrammaCashback.class);
-		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 2.0);
-		expect(progrCash.creaRimborso(not(eq("ABCDEFGHI123456")), anyString())).andStubThrow(new IllegalArgumentException());
-		expect(progrCash.creaRimborso(anyString(), not(eq("qwerty7890")))).andStubThrow(new IllegalArgumentException());
-		PowerMock.replay(progrCash);
+		when(progrCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
+		when(progrCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
 
 		//mock parziale per realizzare lo stub del metodo privato
-		applCash = PowerMock.createPartialMock(ApplicazioneCashback.class, "ricercaProgramma");
-		PowerMock.expectPrivate(applCash, "ricercaProgramma", 162022, progrCash).asStub();
-		PowerMock.expectPrivate(applCash, "ricercaProgramma", not(eq(162022)), eq(progrCash)).andStubThrow(new IllegalArgumentException());
-		PowerMock.replay(applCash);
-		
-		
+		applCash = PowerMockito.spy(ApplicazioneCashback.getInstance());
+		PowerMockito.doThrow(new IllegalArgumentException()).when(applCash, "ricercaProgramma", not(eq(162022)) , any());
+		//il comportamento per l'input corretto è quello di default: ritorna null
 	}
 
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 
 	@Test
 	public void test1() throws Exception {
@@ -157,6 +152,8 @@ public class PowerEasyMockTest1 {
 		//eccezione per programma
 		assertThrows(IllegalArgumentException.class, ()->applCash.richiediRimborso("ABCDEFGHI123456", "qwer!y7890", 150, progrCash));
 	}
+
+
 	@Test
 	public void test5() throws Exception{
 

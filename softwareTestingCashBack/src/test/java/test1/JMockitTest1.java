@@ -1,4 +1,4 @@
-package testing.test1;
+package test1;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;

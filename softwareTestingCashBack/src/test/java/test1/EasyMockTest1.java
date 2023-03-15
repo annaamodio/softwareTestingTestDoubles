@@ -1,4 +1,4 @@
-package testing.test1;
+package test1;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;
