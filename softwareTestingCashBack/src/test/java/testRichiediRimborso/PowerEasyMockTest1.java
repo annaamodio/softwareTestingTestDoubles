@@ -114,7 +114,7 @@ public class PowerEasyMockTest1 {
 
 		//oggetto mock
 		progrCash = mock(ProgrammaCashback.class);
-		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 2.0);
+		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 10.0);
 		expect(progrCash.creaRimborso(not(eq("ABCDEFGHI123456")), anyString())).andStubThrow(new IllegalArgumentException());
 		expect(progrCash.creaRimborso(anyString(), not(eq("qwerty7890")))).andStubThrow(new IllegalArgumentException());
 		PowerMock.replay(progrCash);
@@ -135,7 +135,7 @@ public class PowerEasyMockTest1 {
 	@Test
 	public void test1() throws Exception {
 		//verifica che funzioni correttamente
-		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.00, 0.1);
+		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 10.00, 0.1);
 	}
 	
 	@Test
@@ -163,7 +163,7 @@ public class PowerEasyMockTest1 {
 
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);
-			Assertions.assertEquals(result, 2.0);
+			Assertions.assertEquals(result, 10.0);
 		}else {
 			assertThrows(IllegalArgumentException.class, () -> applCash.richiediRimborso(idCittadino, password, programma, progrCash));
 		}

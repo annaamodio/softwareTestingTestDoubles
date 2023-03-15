@@ -24,7 +24,7 @@ class MockitoTest1 {
 		progCash = mock(ProgrammaCashback.class);
 		//definizione del comportamento
 		when(progCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
-		when(progCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
+		when(progCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 10.0);
 		//la seconda definizione prevale sulla prima
 	}
 
@@ -43,7 +43,7 @@ class MockitoTest1 {
 
 		if(esito) {
 			float result = appCash.richiediRimborso(idCittadino, password, programma, progCash);
-			assertEquals(result, 2.0);	
+			assertEquals(result, 10.0);
 			verify(progCash).creaRimborso("ABCDEFGHI123456", "qwerty7890");
 		}else {
 			assertThrows(IllegalArgumentException.class, () -> appCash.richiediRimborso(idCittadino, password, programma, progCash));

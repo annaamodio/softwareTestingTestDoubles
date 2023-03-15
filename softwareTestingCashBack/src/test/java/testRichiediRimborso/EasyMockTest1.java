@@ -28,7 +28,7 @@ class EasyMockTest1 {
 		//creazione del mock
 		progrCash = mock(ProgrammaCashback.class);
 		//fase di record
-		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 2.0);
+		expect(progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890")).andStubReturn((float) 10.0);
 		expect(progrCash.creaRimborso(anyString(), anyString())).andStubThrow(new IllegalArgumentException());
 		//avvio fase di replay
 		replay(progrCash);
@@ -46,7 +46,7 @@ class EasyMockTest1 {
 
 		//test con valori corretti
 		float result = applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash);
-		assertEquals(result,2.0);
+		assertEquals(result,10.0);
 		
 	}
 	
@@ -66,7 +66,7 @@ class EasyMockTest1 {
 		//il campo 'esito' è stato inserito per poter svolgere un test assertion-based
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma , progrCash);
-			assertEquals(result,2.0);
+			assertEquals(result,10.0);
 		}else {
 			assertThrows(IllegalArgumentException.class, ()->applCash.richiediRimborso(idCittadino, password, programma , progrCash));
 		}

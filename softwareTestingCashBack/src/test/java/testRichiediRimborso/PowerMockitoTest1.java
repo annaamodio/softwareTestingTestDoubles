@@ -115,7 +115,7 @@ public class PowerMockitoTest1 {
 		//oggetto mock
 		progrCash = mock(ProgrammaCashback.class);
 		when(progrCash.creaRimborso(anyString(), anyString())).thenThrow(new IllegalArgumentException());
-		when(progrCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 2.0);
+		when(progrCash.creaRimborso(eq("ABCDEFGHI123456"), eq("qwerty7890"))).thenReturn((float) 10.0);
 
 		//mock parziale per realizzare lo stub del metodo privato
 		applCash = PowerMockito.spy(ApplicazioneCashback.getInstance());
@@ -127,7 +127,7 @@ public class PowerMockitoTest1 {
 	@Test
 	public void test1() throws Exception {
 		//verifica che funzioni correttamente
-		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.00, 0.1);
+		assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 10.00, 0.1);
 	}
 	
 	@Test
@@ -157,7 +157,7 @@ public class PowerMockitoTest1 {
 
 		if(esito) {
 			float result = applCash.richiediRimborso(idCittadino, password, programma, progrCash);
-			Assertions.assertEquals(result, 2.0);
+			Assertions.assertEquals(result, 10.0);
 		}else {
 			assertThrows(IllegalArgumentException.class, () -> applCash.richiediRimborso(idCittadino, password, programma, progrCash));
 		}

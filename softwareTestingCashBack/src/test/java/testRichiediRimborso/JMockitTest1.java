@@ -30,10 +30,10 @@ public class JMockitTest1 {
 
         //risultato corretto
         new Expectations(){{
-            progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890"); result=2.0;
+            progrCash.creaRimborso("ABCDEFGHI123456", "qwerty7890"); result=10.0;
         }};
 
-        assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 2.0);
+        assertEquals(applCash.richiediRimborso("ABCDEFGHI123456", "qwerty7890", 162022, progrCash), 10.0);
     }
 
     @Test
@@ -58,7 +58,7 @@ public class JMockitTest1 {
             progrCash.creaRimborso(anyString, anyString); result = new Delegate(){
                 float delegate(String idCittadino, String password){
                     if(idCittadino.matches("ABCDEFGHI123456") && password.matches("qwerty7890")){
-                        return (float) 2.0;
+                        return (float) 10.0;
                     }else{
                         throw new IllegalArgumentException();
                     }
@@ -70,7 +70,7 @@ public class JMockitTest1 {
 
         if(esito) {
             float result = applCash.richiediRimborso(idCittadino, password, programma , progrCash);
-            assertEquals(result,2.0);
+            assertEquals(result,10.0);
         }else {
             assertThrows(IllegalArgumentException.class, ()->applCash.richiediRimborso(idCittadino, password, programma , progrCash));
         }
