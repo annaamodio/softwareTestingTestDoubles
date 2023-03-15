@@ -1,4 +1,4 @@
-package unitTest;
+package unitTesting;
 
 import boundary.MainFrame;
 import control.CGestioneCashback;
@@ -9,7 +9,6 @@ import org.junit.Test;
 import java.awt.*;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 public class TestBoundary {
 

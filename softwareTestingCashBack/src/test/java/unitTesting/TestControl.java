@@ -1,4 +1,4 @@
-package unitTest;
+package unitTesting;
 
 import control.CGestioneCashback;
 import entity.ApplicazioneCashback;
@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TestControl {
-    @Mocked private ApplicazioneCashback appCash;// static non funziona
+    @Mocked private ApplicazioneCashback appCash;
     @Tested static CGestioneCashback gestioneCashback;
 
     @Test

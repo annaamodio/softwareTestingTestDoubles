@@ -1,4 +1,4 @@
-package test1;
+package testRichiediRimborso;
 
 import static org.easymock.EasyMock.anyString;
 import static org.easymock.EasyMock.eq;
@@ -7,7 +7,6 @@ import static org.easymock.EasyMock.mock;
 import static org.easymock.EasyMock.not;
 import static org.junit.Assert.*;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import org.junit.AfterClass;
@@ -19,7 +18,6 @@ import org.junit.runners.Parameterized;
 import org.powermock.api.easymock.PowerMock;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
-import org.easymock.EasyMock.*;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;

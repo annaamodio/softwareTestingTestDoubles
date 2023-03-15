@@ -1,14 +1,9 @@
-package test1;
+package testRichiediRimborso;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
-import junitparams.JUnitParamsRunner;
 //import junitparams.Parameters;
-import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.runners.Parameterized.Parameters;
-import junitparams.*;
-import junitparams.converters.Param;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;

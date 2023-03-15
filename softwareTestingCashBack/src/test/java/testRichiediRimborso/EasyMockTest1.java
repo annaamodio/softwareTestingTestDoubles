@@ -1,4 +1,4 @@
-package test1;
+package testRichiediRimborso;
 
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.params.ParameterizedTest;

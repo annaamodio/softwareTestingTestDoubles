@@ -1,9 +1,8 @@
-package test1;
+package testRichiediRimborso;
 
 import entity.ApplicazioneCashback;
 import entity.ProgrammaCashback;
 import mockit.*;
-import org.junit.Before;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
