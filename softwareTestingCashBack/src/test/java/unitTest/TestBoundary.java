@@ -1,4 +1,4 @@
-package unitTest.unitTest;
+package unitTest;
 
 import boundary.MainFrame;
 import control.CGestioneCashback;

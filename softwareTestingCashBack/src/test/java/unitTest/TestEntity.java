@@ -1,4 +1,4 @@
-package unitTest.unitTest;
+package unitTest;
 
 import database.*;
 import entity.ApplicazioneCashback;

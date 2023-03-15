@@ -1,4 +1,4 @@
-package unitTest.unitTest;
+package unitTest;
 
 import control.CGestioneCashback;
 import entity.ApplicazioneCashback;
