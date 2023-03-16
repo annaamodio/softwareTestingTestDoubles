@@ -10,7 +10,6 @@ public class ApplicazioneCashback {
 	//inoltre è dichiarata come Singleton, poichè si vuole imporre che nel sistema ce ne sia una sola istanza
 	
 	private static ApplicazioneCashback instance=null;
-	private static ProgrammaCashback progCash;
 
 	private ArrayList<Iscrizione> iscrizioni;
 	private ArrayList<Cittadino> cittadini;

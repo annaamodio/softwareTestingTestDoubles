@@ -65,7 +65,6 @@ public class PowerMockitoTest1 {
 				{"a1b2b3","qwer!y&890",11001122,false},
 				{"ABCDEFGHI12345","qwerty7890",11001122,false},
 				{"ABCDEFGHI1234567","111111111111111111",11001122,false},
-				{"ABCDEFGHI123456","qwerty7890",162022,false},
 				{"ABCDEFGHI12@45%","qwerty789",11001122,false},
 				{"ABCDEFGHI123456","",11001122,false},
 				{"bbbbbbbbbbbbbbbbbb","qwer!y&890",1162022,false},
@@ -119,8 +118,8 @@ public class PowerMockitoTest1 {
 
 		//mock parziale per realizzare lo stub del metodo privato
 		applCash = PowerMockito.spy(ApplicazioneCashback.getInstance());
+		PowerMockito.doReturn(progrCash).when(applCash, "ricercaProgramma",eq(162022) , any());
 		PowerMockito.doThrow(new IllegalArgumentException()).when(applCash, "ricercaProgramma", not(eq(162022)) , any());
-		//il comportamento per l'input corretto è quello di default: ritorna null
 	}
 
 

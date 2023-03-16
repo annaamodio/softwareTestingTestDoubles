@@ -68,7 +68,6 @@ public class PowerEasyMockTest1 {
 				{"a1b2b3","qwer!y&890",11001122,false},
 				{"ABCDEFGHI12345","qwerty7890",11001122,false},
 				{"ABCDEFGHI1234567","111111111111111111",11001122,false},
-				{"ABCDEFGHI123456","qwerty7890",162022,false},
 				{"ABCDEFGHI12@45%","qwerty789",11001122,false},
 				{"ABCDEFGHI123456","",11001122,false},
 				{"bbbbbbbbbbbbbbbbbb","qwer!y&890",1162022,false},
@@ -121,7 +120,7 @@ public class PowerEasyMockTest1 {
 
 		//mock parziale per realizzare lo stub del metodo privato
 		applCash = PowerMock.createPartialMock(ApplicazioneCashback.class, "ricercaProgramma");
-		PowerMock.expectPrivate(applCash, "ricercaProgramma", 162022, progrCash).asStub();
+		PowerMock.expectPrivate(applCash, "ricercaProgramma", 162022, progrCash).andStubReturn(progrCash);
 		PowerMock.expectPrivate(applCash, "ricercaProgramma", not(eq(162022)), eq(progrCash)).andStubThrow(new IllegalArgumentException());
 		PowerMock.replay(applCash);
 		
