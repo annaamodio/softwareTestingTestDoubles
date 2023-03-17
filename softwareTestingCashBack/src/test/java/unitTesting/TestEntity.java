@@ -19,10 +19,10 @@ public class TestEntity {
     private static ApplicazioneCashback appCash;
 
     @Mocked
-    private DBProgrammaCashback dbProgCash; //mocking di classe
+    DBProgrammaCashback dbProgCash; //mocking di classe
 
     @Mocked
-    private DBIscrizione dbIscrizione; //mocking di classe
+    DBIscrizione dbIscrizione; //mocking di classe
 
     //sono dichiarate come Injectable perchè c'è bisogno di istanze diverse
     @Injectable DBAcquisto acq1;
