@@ -9,7 +9,7 @@ public class ApplicazioneCashback {
 	//ApplicazioneCashback è la classe façade per il nostro package entity
 	//inoltre è dichiarata come Singleton, poichè si vuole imporre che nel sistema ce ne sia una sola istanza
 	
-	private static ApplicazioneCashback instance=null;
+	private static ApplicazioneCashback instance;
 
 	private ArrayList<Iscrizione> iscrizioni;
 	private ArrayList<Cittadino> cittadini;
