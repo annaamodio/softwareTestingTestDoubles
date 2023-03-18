@@ -66,7 +66,7 @@ public class TestEntity {
             dbIscrizione.getCarteRegistrate(); result = new ArrayList<DBCartaDiCredito>(Arrays.asList(dbCarta));
             dbIscrizione.getCittadino(); result = dbCittadino;
             dbIscrizione.getProgramma(); result = dbProgCash;
-
+            //Il metodo restituisce un arrayList di oggetti mock creati per l'occorrenza
             dbIscrizione.getAcquistiRegistrati(); result = new ArrayList<DBAcquisto>(Arrays.asList(acq1,acq2));
 
             //DEFINIZIONE DEL COMPORTAMENTO DI DBAcquisto
